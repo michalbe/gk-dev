@@ -7,6 +7,8 @@ vmstatus=$(echo $vmstatus | sed -e 's/([^()]*)//g' | sed -e 's/[[:space:]]*$//')
 
 if [[ $vmstatus == "powered off" ]]; then
   echo "off!"
+else
+  echo $vmstatus
 fi
 
 # sleep 30
