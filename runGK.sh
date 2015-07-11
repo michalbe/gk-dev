@@ -2,6 +2,7 @@
 # VBoxManage startvm GK-DEV
 echo "Waiting for VM..."
 vmstatus=$(VBoxManage list vms -l | grep -e ^Name: -e ^State | sed s/\ \ //g | awk '/GK-DEV/{getline; print}')
+vmstatus=${vmstatus#*: }
 
 echo $vmstatus
 # sleep 30
