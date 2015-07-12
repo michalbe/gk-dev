@@ -1,0 +1,18 @@
+#!/bin/bash
+sudo mount -t vboxsf -o uid=33,gid=33,dmask=022,umask=022 concrete /srv/rabeko/themes/concrete
+sudo mount -t vboxsf -o uid=33,gid=33,dmask=022,umask=022 galeriaKoloru /srv/rabeko/themes/galeriaKoloru
+sudo mount -t vboxsf -o uid=33,gid=33,dmask=022,umask=022 rabekoBiz /srv/rabeko/themes/rabekoBiz
+sudo mount -t vboxsf -o uid=33,gid=33,dmask=022,umask=022 vandal /srv/rabeko/themes/vandal
+
+sudo mv /srv/rabeko/cache/smarty/cache/index.php /tmp/index.php.back
+sudo rm -r /srv/rabeko/cache/smarty/cache/*
+sudo mv /tmp/index.php.back /srv/rabeko/cache/smarty/cache/index.php
+sudo chown www-data:www-data /srv/rabeko/cache/smarty/cache/index.php
+
+sudo mv /srv/rabeko/cache/smarty/compile/index.php /tmp/index.php.back
+sudo rm -r /srv/rabeko/cache/smarty/compile/*
+sudo mv /tmp/index.php.back /srv/rabeko/cache/smarty/compile/index.php
+sudo chown www-data:www-data /srv/rabeko/cache/smarty/compile/index.php
+
+POM=$(sudo ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
+mysql -uroot -pdeveloper -e "USE rabeko; UPDATE \`dev_shop_url\` SET \`domain\`='${POM}', \`domain_ssl\`='${POM}' WHERE 1;"
