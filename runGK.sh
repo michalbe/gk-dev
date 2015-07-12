@@ -1,7 +1,13 @@
 #!/bin/bash
 vboxman=VBoxManage;
+vboxhead=VBoxHeadless
 
-$vboxman startvm GK-DEV
+#no gui
+nohup $vboxhead -s GK-DEV &
+
+# show GUI
+#$vboxman startvm GK-DEV
+
 echo "VM is starting..."
 vmstatus=$($vboxman list vms -l | grep -e ^Name: -e ^State | sed s/\ \ //g | awk '/GK-DEV/{getline; print}')
 vmstatus=${vmstatus#*: }
