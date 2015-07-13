@@ -1,7 +1,7 @@
 # GK environment configuration files
 
 ## Dependencies
- - VirtualBox
+ - [VirtualBox](https://www.virtualbox.org/)
  - __GK-DEV.ova__ VM image with the environment
 
 ## Directoty structure
