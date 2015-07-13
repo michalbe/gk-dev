@@ -1,5 +1,5 @@
 #!/bin/bash
-#VBoxManage startvm GK-DEV
+VBoxManage startvm GK-DEV
 echo "Waiting for VM..."
 vmstatus=$(VBoxManage list vms -l | grep -e ^Name: -e ^State | sed s/\ \ //g | awk '/GK-DEV/{getline; print}')
 vmstatus=${vmstatus#*: }
@@ -13,8 +13,6 @@ ip_ready(){
   else
     return 0;
   fi
-  # echo "PASSWORD: developer"
-  # ssh developer@`VBoxManage guestproperty get GK-DEV "/VirtualBox/GuestInfo/Net/0/V4/IP" | awk '{ print $2 }'`
 }
 
 if [[ $vmstatus == "powered off" ]]; then
@@ -26,5 +24,13 @@ else
     echo 'Waiting for machine to stand up...'
   done
 
-  echo 'wstala!'
+  ip=`VBoxManage guestproperty get GK-DEV "/VirtualBox/GuestInfo/Net/0/V4/IP" | awk '{ print $2 }'`
+  echo "Machine active on $ip"
+  echo ""
+  echo "PASSWORD: developer"
+  echo "LOGIN: developer"
+
+  until ssh developer@$ip; do
+    echo 'Waiting for machine to stand up...'
+  done
 fi
