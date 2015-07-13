@@ -3,9 +3,9 @@
 echo "Waiting for VM..."
 vmstatus=$(VBoxManage list vms -l | grep -e ^Name: -e ^State | sed s/\ \ //g | awk '/GK-DEV/{getline; print}')
 vmstatus=${vmstatus#*: }
-vmstatus=$(echo $vmstatus | sed -e 's/([^()]*)//g')
+vmstatus=$(echo $vmstatus | sed -e 's/([^()]*)//g' | sed -e 's/[[:space:]]*$//')
 
-if [[ $vmstatus == "powered off " ]]; then
+if [[ $vmstatus == "powered off" ]]; then
   echo "off!"
 fi
 
