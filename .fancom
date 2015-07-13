@@ -11,7 +11,7 @@
 reponame="gk-dev"
 
 # Do we want to push to the temporary branch?
-# pushtotemp=0
+pushtotemp=1
 
 # After pushing to the repo, what branch needs to be compared?
 #comparewith="branch to compare"
