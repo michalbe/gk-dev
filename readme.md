@@ -1,4 +1,4 @@
-# GK environment configuration files
+# :pencil2: GK environment configuration files
 
 ## Dependencies
  - [VirtualBox](https://www.virtualbox.org/)
