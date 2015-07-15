@@ -9,6 +9,7 @@
 
 ## Running in VBOX
  - go to `Settings` -> `Network` and set `Attached to` to `Bridged Adapter`
+ - then `Advances` and change last 2 digits of the `Mac Address` to whatever
  - add all 4 directories to `Shared Folders` with __exact same names__ as their repo names
  - turn __VBox__ off, it will not be needed anymore
  - run `./runGK.sh` script from the command line
